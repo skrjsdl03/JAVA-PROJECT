@@ -5,8 +5,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class Login {
+import User.UserShop;
 
+public class Login {
+	private String id;
+	private String pw;
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -73,13 +76,29 @@ public class Login {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(e.getSource()==btnNewButton) {
-	      			JOptionPane.showMessageDialog(null,"로그인 완료");
+					id = textField.getText();
+					pw = textField_1.getText();
+					System.out.println(id + pw);
+					if(id.equals("admin") && pw.equals("1234")) {
+						
+						JOptionPane.showMessageDialog(null,"관리자 로그인 완료");
+						frame.dispose();
+						Manager_1 Mg=new Manager_1();
+						Mg.setVisible(true);
+						Mg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					}
+					
+					else if(id.equals("최주영") && pw.equals("20212503")) {
+						JOptionPane.showMessageDialog(null,"사용자 로그인 완료");
+						User.UserShop userShop = new UserShop();
+					}
+					
+					else {
+						JOptionPane.showMessageDialog(null,"로그인 실패");
+					}
 	      		}
 				
-				frame.dispose();
-				Manager_1 Mg=new Manager_1();
-				Mg.setVisible(true);
-				Mg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 			}
 		});
 		btnNewButton.setBounds(467, 212, 91, 23);
